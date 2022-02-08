@@ -78,4 +78,31 @@ Goal: Use threads to allow multiple programs to share a CPU
   - suspend(): save state of current thread to memory
   - resume(): restore state from memory
 
-... page 4
+- Condition variables: let threads wait for events and be notified when they occur
+- API:
+  - wait(cv): yield processor and wait to be notified of cv
+  - notify(cv): notify waiting threads of cv
+
+- Preemption: forcibly interrupt threads
+- e.g.
+
+```
+timer_interrupt():
+  push PC
+  push registers
+  yield()
+  pop registers
+  pop PC
+```
+- Problem: what if timer interrupt occurs while running yield or yield_wait ?
+- Solution: hardware mechanism to disable interrupts
+
+## Summary
+
+- Threads virtualize a processor
+- Yield allows kernel to suspend current thread and resume another
+- Condition variables provide efficient API for threads
+  - Wait for an event and notified when it occurs
+  - Introduces yield_wait()
+- Preemption forces thread to be interrupted
+  - Requires special interrupt and hardware support that disables other interrupts 
