@@ -31,3 +31,52 @@
 - Microkernels provide modularity using subsystems but converting a monolithic to micro is challenging
 
 # Lecture 7 - Performance Problems
+
+## Recap
+
+- Operating systems enforce modularity on single machine using virtualisation
+
+1. Programs should not be able to refer to other's memory -> virtual memory
+2. Programs should be able to communicate -> bounded buffers (virtual communication links)
+3. Programs should be able to share a CPU without halting another programs process -> threads (virtual processors)
+
+- Virtual machines enforce modularity between OSes running on same physical hardware
+
+- How do we ensure that a system not only works but works well?
+- Tackling performance;
+
+1. Measure system to find bottleneck
+2. Relax bottleneck
+
+- Few users
+  - Low latency
+  - Low throughput (few users = few requests)
+- Moderate users
+  - Low latency (new users consume previously idle resources)
+  - High throughput (more users = more requests)
+- Many users
+  - High latency (requests queue up)
+  - Throughput plateaus (cannot serve requests any faster -- hit limit)
+
+- Again,
+
+1. Measure the system, compare it to our system model to find bottleneck
+2. Relax the bottleneck
+
+- HDD is made up of platters where each platter has many tracks and inside each track has many sectors
+- SDD is made up of many blocks where each block has many pages and inside each page has many cells
+
+- Again,
+
+1. Measure the system to find the bottleneck
+2. Relax the bottleneck
+   1. Batch requests
+   2. Cache data
+   3. Exploit concurrency
+   4. Exploit parallelism
+
+- How to approach performance problems;
+  - Measuring and modeling the system to find the bottleneck and then relaxing the bottleneck
+- Techniques to improve performance
+  - Four common techniques; batching, caching, concurrency and parallelism
+  - All these techniques require understanding of how underlying system works and how it is used
